@@ -42,35 +42,53 @@ export default async function HomePage({ searchParams }: any) {
     if (!articlesOk || !categoriesOk) return <ErrorLoadingContent />;
 
     return (
-      <Container as="section">
-        <main className="flex-1">
+      <Container as="section" aria-labelledby="articles-heading">
+        <main className="flex-1" role="main">
           <HeroSection />
 
-          <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <article className="mb-12 flex justify-center">
-              <CategoryFilter categories={categories} />
-            </article>
+          <section
+            className="container mx-auto px-4 sm:px-6 lg:px-8"
+            aria-labelledby="filter-heading"
+          >
+            <header className="mb-12 flex justify-center">
+              <h2 id="filter-heading" className="sr-only">
+                Filter articles by category
+              </h2>
+              <CategoryFilter
+                categories={categories}
+                aria-label="Category filter"
+              />
+            </header>
 
-            <Suspense fallback={<ArticlesSkeleton />}>
+            <Suspense fallback={<ArticlesSkeleton aria-busy="true" />}>
               {articles.length ? (
                 <>
-                  <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                  <section
+                    aria-labelledby="articles-heading"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+                  >
+                    <h2 id="articles-heading" className="sr-only">
+                      Articles
+                    </h2>
                     {articles.map((article) => (
                       <ArticleCard key={article.id} article={article} />
                     ))}
                   </section>
 
                   {pagination && (
-                    <section className="mt-16 flex justify-center">
+                    <nav
+                      aria-label="Pagination"
+                      className="mt-16 flex justify-center"
+                    >
                       <Pagination
                         currentPage={pagination.current_page}
                         totalPages={pagination.total_pages}
                       />
-                    </section>
+                    </nav>
                   )}
                 </>
               ) : (
-                <NotFound />
+                <NotFound aria-live="polite" />
               )}
             </Suspense>
           </section>

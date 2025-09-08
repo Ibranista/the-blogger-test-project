@@ -6,13 +6,24 @@ import { Button } from "./ui/button";
 
 function NotFound() {
   return (
-    <section className="text-center py-20" aria-label="No articles found">
-      <figure className="w-24 h-24 mx-auto mb-6 bg-muted rounded-full flex items-center justify-center">
+    <section
+      className="text-center py-20"
+      role="status"
+      aria-live="polite"
+      aria-labelledby="notfound-heading"
+    >
+      <figure
+        className="w-24 h-24 mx-auto mb-6 bg-muted rounded-full flex items-center justify-center"
+        aria-hidden="true"
+      >
         <span className="text-4xl">📝</span>
       </figure>
-      <p className="text-muted-foreground text-xl font-medium">
+      <h2
+        id="notfound-heading"
+        className="text-muted-foreground text-xl font-medium"
+      >
         No articles found
-      </p>
+      </h2>
       <p className="text-muted-foreground/80 mt-2">
         Check back soon for new content!
       </p>
@@ -30,17 +41,27 @@ function ErrorLoadingContent({
   showReturn?: boolean;
 }) {
   return (
-    <section className="min-h-screen bg-background">
+    <section
+      className="min-h-screen bg-background"
+      aria-labelledby="error-heading"
+    >
       <BlogHeader />
-      <main className="container mx-auto px-4 py-20">
+      <main className="container mx-auto px-4 py-20" role="main">
         <section
           className="text-center max-w-md mx-auto"
-          aria-label="Error loading content"
+          role="alert"
+          aria-live="assertive"
         >
-          <figure className="w-16 h-16 mx-auto mb-6 bg-destructive/10 rounded-full flex items-center justify-center">
+          <figure
+            className="w-16 h-16 mx-auto mb-6 bg-destructive/10 rounded-full flex items-center justify-center"
+            aria-hidden="true"
+          >
             <span className="text-2xl">⚠️</span>
           </figure>
-          <h1 className="text-2xl font-heading font-bold text-foreground mb-4">
+          <h1
+            id="error-heading"
+            className="text-2xl font-heading font-bold text-foreground mb-4"
+          >
             Error Loading {name || "Content"}
           </h1>
           <p className="text-muted-foreground">
@@ -49,7 +70,11 @@ function ErrorLoadingContent({
           </p>
           {showReturn && (
             <Link href="/" className="mt-3 inline-block">
-              <Button variant="outline" size="sm">
+              <Button
+                variant="outline"
+                size="sm"
+                aria-label="Return to homepage"
+              >
                 Return Home
               </Button>
             </Link>

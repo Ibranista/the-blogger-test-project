@@ -8,8 +8,14 @@ export function CategoryFilter({
   currentCategory,
 }: ICategoryFilterProps) {
   return (
-    <section className="flex flex-wrap gap-3 mb-8">
-      <Link href="/">
+    <section
+      className="flex flex-wrap gap-3 mb-8"
+      aria-labelledby="categories-heading"
+    >
+      <h2 id="categories-heading" className="sr-only">
+        Categories
+      </h2>
+      <Link href="/" aria-current={!currentCategory ? "page" : undefined}>
         <Badge
           variant={!currentCategory ? "default" : "outline"}
           className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -18,7 +24,11 @@ export function CategoryFilter({
         </Badge>
       </Link>
       {Object.entries(categories).map(([key, value]) => (
-        <Link key={key} href={`/category/${encodeURIComponent(key)}`}>
+        <Link
+          key={key}
+          href={`/category/${encodeURIComponent(key)}`}
+          aria-current={currentCategory === key ? "page" : undefined}
+        >
           <Badge
             variant={currentCategory === key ? "default" : "outline"}
             className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
