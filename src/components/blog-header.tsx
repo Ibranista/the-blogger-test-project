@@ -10,19 +10,24 @@ export async function BlogHeader() {
 
   const { data } = optionsResponse || {};
   const { nav_content } = data || {};
-  console.log("data-->", nav_content);
-  // nav_content is: [ { 'nav-name': '/' }, { 'nav-name': '/' } ]
+
   return (
-    <header className="border-b bg-card">
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-2xl font-heading font-bold text-primary"
-          >
-            Home
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo/Brand */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105">
+              <span className="text-primary-foreground font-bold text-lg">
+                B
+              </span>
+            </div>
+            <span className="text-xl font-heading font-semibold text-foreground group-hover:text-primary transition-colors">
+              Blog
+            </span>
           </Link>
-          <nav className="hidden md:flex items-center gap-6">
+
+          <nav className="hidden md:flex items-center space-x-1">
             {Array.isArray(nav_content) &&
               nav_content.map(
                 (
@@ -34,7 +39,7 @@ export async function BlogHeader() {
                   <Link
                     key={index}
                     href={item["nav-name"].url}
-                    className="text-foreground hover:text-primary transition-colors"
+                    className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-accent/50 rounded-lg transition-all duration-200 hover:scale-105"
                     target={item["nav-name"].target || undefined}
                   >
                     {item["nav-name"].title}
@@ -42,6 +47,14 @@ export async function BlogHeader() {
                 )
               )}
           </nav>
+
+          <button className="md:hidden p-2 rounded-lg hover:bg-accent/50 transition-colors">
+            <div className="w-5 h-5 flex flex-col justify-center space-y-1">
+              <div className="w-full h-0.5 bg-foreground/80 rounded"></div>
+              <div className="w-full h-0.5 bg-foreground/80 rounded"></div>
+              <div className="w-full h-0.5 bg-foreground/80 rounded"></div>
+            </div>
+          </button>
         </div>
       </div>
     </header>
