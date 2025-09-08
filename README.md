@@ -76,6 +76,10 @@ All blog data (articles, categories, options) is fetched from a remote WordPress
 - `start` – Start the production server
 - `lint` – Run ESLint
 
+## Tooling & Automation
+
+- **Husky**: Git hooks are managed with [Husky](https://typicode.github.io/husky/). This project uses a pre-commit hook to automatically run `lint-staged` and ensure code quality before every commit. See the `.husky/` directory for configuration.
+
 ## Folder Structure
 
 - `src/app/` – Application routes and pages
