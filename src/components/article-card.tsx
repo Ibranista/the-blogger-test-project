@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { IArticle } from "@/types/general.type";
+
 import StarButton from "./star-button";
 
 interface ArticleCardProps {
