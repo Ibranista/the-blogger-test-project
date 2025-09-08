@@ -46,3 +46,9 @@ export interface ICategoriesResponse {
 export interface IPostPageProps {
   params: { id: string };
 }
+
+export interface IPaginationProps {
+  currentPage: number;
+  totalPages: number;
+  basePath?: string;
+}
