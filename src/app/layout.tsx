@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "Ibraheem's Blog | Modern Web Development Insights",
     description:
       "Stay updated with the latest trends, tutorials, and insights in web development, JavaScript, React, and Next.js.",
-    url: "the-blogger-test-project.vercel.app",
+    url: "https://www.the-blogger-test-project.vercel.app",
     siteName: "Ibraheem's Blog",
     images: [
       {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-  metadataBase: new URL("the-blogger-test-project.vercel.app"),
+  metadataBase: new URL("https://www.the-blogger-test-project.vercel.app"),
 };
 
 export default function RootLayout({
