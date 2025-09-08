@@ -1,47 +1,18 @@
+import {
+  IApiResponse,
+  IArticle,
+  ICategoriesResponse,
+} from "@/types/general.type";
+
 const BASE_URL = "https://wordpress-zvamn.wasmer.app";
-
-export interface Article {
-  id: number;
-  title: string;
-  content: string;
-  acf: {
-    title: string;
-    content: string;
-    featured_image: {
-      url: string;
-      alt: string;
-      width: number;
-      height: number;
-    };
-    author: string;
-    category: string;
-  };
-}
-
-export interface ApiResponse {
-  success: boolean;
-  data: Article[];
-  pagination?: {
-    current_page: number;
-    per_page: number;
-    total_pages: number;
-    total_items: number;
-  };
-  count?: number;
-}
-
-export interface CategoriesResponse {
-  success: boolean;
-  data: Record<string, string>;
-}
 
 export async function fetchArticles(
   page = 1,
   perPage = 6
-): Promise<ApiResponse> {
+): Promise<IApiResponse> {
   const response = await fetch(
     `${BASE_URL}/wp-json/custom-api/v1/articles?page=${page}&per_page=${perPage}`,
-    { next: { revalidate: 300 } } // Cache for 5 minutes
+    { next: { revalidate: 300 } }
   );
 
   if (!response.ok) {
@@ -53,7 +24,7 @@ export async function fetchArticles(
 
 export async function fetchArticlesByCategory(
   category: string
-): Promise<ApiResponse> {
+): Promise<IApiResponse> {
   const response = await fetch(
     `${BASE_URL}/wp-json/custom-api/v1/articles-category?category=${encodeURIComponent(category)}`,
     { next: { revalidate: 300 } }
@@ -66,7 +37,7 @@ export async function fetchArticlesByCategory(
   return response.json();
 }
 
-export async function fetchCategories(): Promise<CategoriesResponse> {
+export async function fetchCategories(): Promise<ICategoriesResponse> {
   const response = await fetch(`${BASE_URL}/wp-json/custom-api/v1/categories`, {
     next: { revalidate: 3600 },
   });
@@ -78,7 +49,7 @@ export async function fetchCategories(): Promise<CategoriesResponse> {
   return response.json();
 }
 
-export async function fetchArticleById(id: number): Promise<Article | null> {
+export async function fetchArticleById(id: number): Promise<IArticle | null> {
   try {
     const response = await fetchArticles(1, 100);
     const article = response.data.find((article) => article.id === id);
@@ -87,4 +58,21 @@ export async function fetchArticleById(id: number): Promise<Article | null> {
     console.error("Error fetching article:", error);
     return null;
   }
+}
+
+export interface OptionsResponse {
+  success: boolean;
+  data: Record<string, string>;
+}
+
+export async function fetchOptions(): Promise<OptionsResponse> {
+  const response = await fetch(`${BASE_URL}/wp-json/custom-api/v1/options`, {
+    next: { revalidate: 3600 },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch options");
+  }
+
+  return response.json();
 }
