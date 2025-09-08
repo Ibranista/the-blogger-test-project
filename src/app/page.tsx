@@ -1,3 +1,23 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home | Ibraheem's Blog",
+  description:
+    "Welcome to Ibraheem's Blog. Explore articles on web development, JavaScript, React, and more.",
+  openGraph: {
+    title: "Home | Ibraheem's Blog",
+    description:
+      "Welcome to Ibraheem's Blog. Explore articles on web development, JavaScript, React, and more.",
+    url: "the-blogger-test-project.vercel.app",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Home | Ibraheem's Blog",
+    description:
+      "Welcome to Ibraheem's Blog. Explore articles on web development, JavaScript, React, and more.",
+  },
+};
 import { Suspense } from "react";
 
 import { ArticleCard } from "@/components/article-card";

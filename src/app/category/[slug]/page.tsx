@@ -1,3 +1,19 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Category | Ibraheem's Blog",
+  description: "Browse posts by category on Ibraheem's Blog.",
+  openGraph: {
+    title: "Category | Ibraheem's Blog",
+    description: "Browse posts by category on Ibraheem's Blog.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Category | Ibraheem's Blog",
+    description: "Browse posts by category on Ibraheem's Blog.",
+  },
+};
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -36,7 +52,7 @@ export default async function CategoryPage({ params }: any) {
     }
 
     return (
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 min-h-screen">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 min-h-screen">
         <div className="max-w-3xl mx-auto">
           <Link href="/" className="mb-4 inline-block">
             <Button variant="ghost" size="sm" className="gap-2 pl-0">
@@ -67,7 +83,7 @@ export default async function CategoryPage({ params }: any) {
             </p>
           )}
         </div>
-      </main>
+      </section>
     );
   } catch {
     return (

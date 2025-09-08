@@ -1,3 +1,22 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Post | Ibraheem's Blog",
+  description:
+    "Read this post on Ibraheem's Blog. Web development, JavaScript, React, and more.",
+  openGraph: {
+    title: "Post | Ibraheem's Blog",
+    description:
+      "Read this post on Ibraheem's Blog. Web development, JavaScript, React, and more.",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Post | Ibraheem's Blog",
+    description:
+      "Read this post on Ibraheem's Blog. Web development, JavaScript, React, and more.",
+  },
+};
 import { fetchArticles } from "@/lib/api";
 
 export async function generateStaticParams() {
@@ -39,7 +58,7 @@ export default async function PostPage({ params }: any) {
     const readingTime = calculateReadingTime(article.acf.content);
 
     return (
-      <section className="min-h-screen bg-background">
+      <article className="min-h-screen bg-background">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <nav className="mb-4" aria-label="Back to blog">
             <Link href="/">
@@ -50,7 +69,7 @@ export default async function PostPage({ params }: any) {
             </Link>
           </nav>
 
-          <article className="max-w-2xl mx-auto">
+          <section className="max-w-2xl mx-auto">
             <header className="mb-6">
               <Badge
                 variant="secondary"
@@ -125,12 +144,12 @@ export default async function PostPage({ params }: any) {
                 </div>
               </section>
             </footer>
-          </article>
+          </section>
         </main>
 
         {/* Toast container for share feedback */}
         <ToastContainer position="bottom-center" hideProgressBar />
-      </section>
+      </article>
     );
   } catch (error) {
     return <ErrorLoadingContent name="post" description="this post." />;
