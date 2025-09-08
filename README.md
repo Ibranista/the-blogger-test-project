@@ -18,7 +18,20 @@ bun dev
 
 Welcome! This is a test project built by **Ibrahim Kedir** using [Next.js](https://nextjs.org/), React, and Tailwind CSS. The main purpose of this project is to demonstrate modern frontend development practices, including data fetching, UI components, and routing.
 
-## Project Overview
+## Firebase Integration
+
+This project uses [Firebase](https://firebase.google.com/) for authentication and [Cloud Firestore](https://firebase.google.com/products/firestore) as a real-time database to enable features like starring individual article posts. When a user stars an article, the action is stored in Firestore, allowing for persistent and real-time star counts per post. You will need to set up your own Firebase project and add your configuration to a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
+
+See `src/lib/firebase/` for the Firebase client setup and usage.
 
 - **Framework:** Next.js 15
 - **Language:** TypeScript
@@ -27,6 +40,8 @@ Welcome! This is a test project built by **Ibrahim Kedir** using [Next.js](https
 - **Data Source:** Fetching blog articles and categories from a remote [WordPress](https://wordpress.org/) backend via REST API
 
 ## Features
+
+- Star articles (requires Google sign-in, powered by Firebase Firestore)
 
 - Blog homepage with article cards
 - Category filtering
