@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { IArticle } from "@/types/general.type";
+import StarButton from "./star-button";
 
 interface ArticleCardProps {
   article: IArticle;
@@ -76,6 +77,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
           </p>
 
           <div className="flex items-center justify-between pt-4 border-t border-border/40">
+            {/* Author */}
             <div className="flex items-center gap-3">
               <div
                 className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center"
@@ -90,27 +92,32 @@ export function ArticleCard({ article }: ArticleCardProps) {
               </span>
             </div>
 
-            <Link
-              href={`/post/${article.id}`}
-              className="flex items-center gap-1 text-sm font-medium text-primary hover:text-black transition-colors duration-300 group-hover:translate-x-1 relative z-30"
-              aria-label={`Read more about ${article.acf.title}`}
-            >
-              Read
-              <svg
-                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+            {/* Actions: Star + Read */}
+            <div className="flex items-center gap-4">
+              <StarButton articleId={article.id} />
+
+              <Link
+                href={`/post/${article.id}`}
+                className="flex items-center gap-1 text-sm font-medium text-primary hover:text-black transition-colors duration-300 group-hover:translate-x-1 relative z-30"
+                aria-label={`Read more about ${article.acf.title}`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Link>
+                Read
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+            </div>
           </div>
         </CardContent>
 
