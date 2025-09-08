@@ -1,8 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Share } from "lucide-react";
 import { toast } from "react-toastify";
+
+import { Button } from "@/components/ui/button";
 
 export default function ShareButton() {
   const handleShare = async () => {

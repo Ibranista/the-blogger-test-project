@@ -1,5 +1,6 @@
-import { fetchOptions } from "@/lib/api";
 import React from "react";
+
+import { fetchOptions } from "@/lib/api";
 
 export async function HeroSection() {
   const [optionsResponse] = await Promise.all([fetchOptions()]);

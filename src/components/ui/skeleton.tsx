@@ -25,4 +25,4 @@ function ArticlesSkeleton() {
   );
 }
 
-export { Skeleton, ArticlesSkeleton };
+export { ArticlesSkeleton,Skeleton };

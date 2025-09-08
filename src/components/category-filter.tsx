@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { Badge } from "@/components/ui/badge";
 import { ICategoryFilterProps } from "@/types/general.type";
 

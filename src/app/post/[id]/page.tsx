@@ -5,20 +5,21 @@ export async function generateStaticParams() {
   return response.data.map((article) => ({ id: article.id.toString() }));
 }
 import "react-toastify/dist/ReactToastify.css";
-import { notFound } from "next/navigation";
+
+import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchArticleById, fetchCategories } from "@/lib/api";
+import { notFound } from "next/navigation";
+import { ToastContainer } from "react-toastify";
+
+import { ErrorLoadingContent } from "@/components/not-found";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import ShareButton from "@/components/ui/share-button";
-import { ToastContainer } from "react-toastify";
-import { formatDate, calculateReadingTime, splitParagraphs } from "@/lib/utils";
-import { ErrorLoadingContent } from "@/components/not-found";
-import { IPostPageProps } from "@/types/general.type";
+import { fetchArticleById, fetchCategories } from "@/lib/api";
+import { calculateReadingTime, formatDate, splitParagraphs } from "@/lib/utils";
 
-export default async function PostPage({ params }: IPostPageProps) {
+export default async function PostPage({ params }: any) {
   const articleId = Number.parseInt(params.id);
 
   if (isNaN(articleId)) {

@@ -1,5 +1,6 @@
-import { fetchOptions } from "@/lib/api";
 import Link from "next/link";
+
+import { fetchOptions } from "@/lib/api";
 
 export async function BlogHeader() {
   const [optionsResponse] = await Promise.all([fetchOptions()]);

@@ -9,9 +9,8 @@ import { Container } from "@/components/ui/container";
 import { ArticlesSkeleton } from "@/components/ui/skeleton";
 import { fetchArticles, fetchCategories } from "@/lib/api";
 import { parsePageNumber } from "@/lib/utils";
-import { IHomePageProps } from "@/types/general.type";
 
-export default async function HomePage({ searchParams }: IHomePageProps) {
+export default async function HomePage({ searchParams }: any) {
   const page = parsePageNumber(searchParams.page, 1);
 
   try {

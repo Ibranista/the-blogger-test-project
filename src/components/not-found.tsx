@@ -1,6 +1,7 @@
-import React from "react";
-import { BlogHeader } from "./blog-header";
 import Link from "next/link";
+import React from "react";
+
+import { BlogHeader } from "./blog-header";
 import { Button } from "./ui/button";
 
 function NotFound() {
@@ -43,8 +44,8 @@ function ErrorLoadingContent({
             Error Loading {name || "Content"}
           </h1>
           <p className="text-muted-foreground">
-            We're having trouble loading {description || " the blog posts"}.
-            Please try again later.
+            We&apos;re having trouble loading {description || " the blog posts"}
+            . Please try again later.
           </p>
           {showReturn && (
             <Link href="/" className="mt-3 inline-block">
@@ -59,4 +60,4 @@ function ErrorLoadingContent({
   );
 }
 
-export { NotFound, ErrorLoadingContent };
+export { ErrorLoadingContent, NotFound };

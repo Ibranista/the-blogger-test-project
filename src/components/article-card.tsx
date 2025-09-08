@@ -1,7 +1,8 @@
-import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import Link from "next/link";
+
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { IArticle } from "@/types/general.type";
 
 interface ArticleCardProps {

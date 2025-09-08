@@ -1,22 +1,21 @@
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
-import { fetchArticlesByCategory, fetchCategories } from "@/lib/api";
+
 import { ArticleCard } from "@/components/article-card";
 import { CategoryFilter } from "@/components/category-filter";
 import { ErrorLoadingContent } from "@/components/not-found";
 import { Button } from "@/components/ui/button";
+import { fetchArticlesByCategory, fetchCategories } from "@/lib/api";
 
+// Generate static paths for all categories
 export async function generateStaticParams() {
   const res = await fetchCategories();
   return res.success ? Object.keys(res.data).map((slug) => ({ slug })) : [];
 }
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+// Main page component
+export default async function CategoryPage({ params }: any) {
   const slug = decodeURIComponent(params.slug);
 
   try {
@@ -25,11 +24,16 @@ export default async function CategoryPage({
       fetchCategories(),
     ]);
 
-    if (!articlesRes.success || !categoriesRes.success) throw new Error();
+    if (!articlesRes.success || !categoriesRes.success) {
+      throw new Error("Failed to load data");
+    }
+
     const { data: articles, count } = articlesRes;
     const { data: categories } = categoriesRes;
 
-    if (!categories[slug]) notFound();
+    if (!categories[slug]) {
+      notFound();
+    }
 
     return (
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 min-h-screen">
