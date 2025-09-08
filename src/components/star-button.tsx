@@ -1,8 +1,5 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
-import { StarOutlineIcon, StarFilledIcon } from "@/assets/icons";
-import { auth, db, googleProvider } from "@/lib/firebase/client";
 import { onAuthStateChanged, signInWithPopup, User } from "firebase/auth";
 import {
   collection,
@@ -13,6 +10,10 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
+import { useEffect, useState, useTransition } from "react";
+
+import { StarFilledIcon,StarOutlineIcon } from "@/assets/icons";
+import { auth, db, googleProvider } from "@/lib/firebase/client";
 
 type Props = { articleId: string | number };
 
