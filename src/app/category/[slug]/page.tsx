@@ -53,7 +53,7 @@ export default async function CategoryPage({ params }: any) {
 
     return (
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 min-h-screen">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <Link href="/" className="mb-4 inline-block">
             <Button variant="ghost" size="sm" className="gap-2 pl-0">
               <ArrowLeft className="h-4 w-4" /> Back to All Posts

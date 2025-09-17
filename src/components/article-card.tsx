@@ -6,12 +6,14 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { IArticle } from "@/types/general.type";
 
 import StarButton from "./star-button";
+import { cn } from "@/lib/utils";
 
 interface ArticleCardProps {
   article: IArticle;
+  className?: string;
 }
 
-export function ArticleCard({ article }: ArticleCardProps) {
+export function ArticleCard({ article, className }: ArticleCardProps) {
   const excerpt =
     article.acf.content.length > 120
       ? article.acf.content.substring(0, 120) + "..."
@@ -19,7 +21,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
 
   return (
     <article
-      className="group relative"
+      className={cn("group relative", className)}
       aria-labelledby={`article-title-${article.id}`}
     >
       <div

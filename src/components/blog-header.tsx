@@ -1,16 +1,20 @@
+"use client";
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
+import HumMenu from "./hum-menu";
 import { fetchOptions } from "@/lib/api";
 
-export async function BlogHeader() {
-  const [optionsResponse] = await Promise.all([fetchOptions()]);
+export function BlogHeader() {
+  const [navContent, setNavContent] = useState<any[]>([]);
 
-  if (!optionsResponse.success) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const { data } = optionsResponse || {};
-  const { nav_content } = data || {};
+  useEffect(() => {
+    fetchOptions().then((optionsResponse) => {
+      if (optionsResponse.success) {
+        const navs = optionsResponse.data?.nav_content;
+        setNavContent(Array.isArray(navs) ? navs : []);
+      }
+    });
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm">
@@ -28,9 +32,10 @@ export async function BlogHeader() {
             </span>
           </Link>
 
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center space-x-1">
-            {Array.isArray(nav_content) &&
-              nav_content.map(
+            {Array.isArray(navContent) &&
+              navContent.map(
                 (
                   item: {
                     "nav-name": { title: string; url: string; target?: string };
@@ -49,13 +54,8 @@ export async function BlogHeader() {
               )}
           </nav>
 
-          <button className="md:hidden p-2 rounded-lg hover:bg-accent/50 transition-colors">
-            <div className="w-5 h-5 flex flex-col justify-center space-y-1">
-              <div className="w-full h-0.5 bg-foreground/80 rounded"></div>
-              <div className="w-full h-0.5 bg-foreground/80 rounded"></div>
-              <div className="w-full h-0.5 bg-foreground/80 rounded"></div>
-            </div>
-          </button>
+          {/* HumMenu for mobile */}
+          <HumMenu navContent={Array.isArray(navContent) ? navContent : []} />
         </div>
       </div>
     </header>
